@@ -2,6 +2,12 @@
 
 public static class Reducers
 {
+    [ReducerMethod(typeof(GetPokedexEntryAction))]
+    public static PokedexState ReduceGetPokedexEntryAction(PokedexState state)
+    {
+        return state with { };
+    }
+
     [ReducerMethod(typeof(GetPokemonAction))]
     public static PokedexState ReduceGetPokemonAction(PokedexState state)
     {
