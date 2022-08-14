@@ -1,0 +1,31 @@
+﻿@using Develix.Pokemons.UI.BlazorComponents.Components
+
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<MudGrid>
+    <MudItem xs="12" md="4">
+        <MudPaper Class="pa-4 ma-2" Elevation="1">
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudNumericField @bind-Value="pokedexId" Dense="true" OnKeyUp="KeyPressedInInputField" />
+                </MudItem>
+                <MudItem xs="12">
+                    <MudButton Disabled="GetPokemonDisabled()" OnClick="GetPokemon">
+                        @if (PokedexState.Value.IsLoading())
+                        {
+                            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                            <MudText Class="ms-2">Loading</MudText>
+                        }
+                        else
+                        {
+                            <MudText>Get Pokémon #@pokedexId</MudText>
+                        }
+                    </MudButton>
+                </MudItem>
+            </MudGrid>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" md="4">
+        <PokemonCard Pokemon="PokedexState.Value.Pokemon" Species="PokedexState.Value.Species" />
+    </MudItem>
+</MudGrid>
