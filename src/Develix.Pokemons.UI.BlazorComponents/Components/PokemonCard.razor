@@ -8,7 +8,21 @@
                 <MudAvatar Style=@($"background-color: {GetPokemonColor(Species)}")>@Pokemon.Name.ToUpper()[0] </MudAvatar>
             </CardHeaderAvatar>
             <CardHeaderContent>
-                <MudText Typo="Typo.body1">@Pokemon.Name</MudText>
+                <MudText Typo="Typo.body1">
+                    @if (Species.IsBaby)
+                    {
+                        <MudIcon Icon="@Icons.Material.Filled.BedroomBaby" Size="Size.Small" Class="mr-1" />
+                    }
+                    @if (Species.IsLegendary)
+                    {
+                        <MudIcon Icon="@Icons.Material.Filled.Stars" Size="Size.Small" Class="mr-1" />
+                    }
+                    @if (Species.IsMythical)
+                    {
+                        <MudIcon Icon="@Icons.Material.Filled.Stars" Color="Color.Warning" Size="Size.Small" Class="mr-1" />
+                    }
+                    @Pokemon.Name
+                </MudText>
                 <MudText Typo="Typo.body1">@GetPokemonTypeNames(Pokemon)</MudText>
             </CardHeaderContent>
         </MudCardHeader>
