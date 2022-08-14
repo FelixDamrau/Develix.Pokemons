@@ -9,5 +9,5 @@ public record PokedexState
     public Pokemon? Pokemon { get; init; }
     public PokemonSpecies? Species { get; init; }
 
-    public bool IsLoading() => LoadingState == PokedexStateLoadingFlags.Idle;
+    public bool IsLoading() => LoadingState != PokedexStateLoadingFlags.Idle;
 }
