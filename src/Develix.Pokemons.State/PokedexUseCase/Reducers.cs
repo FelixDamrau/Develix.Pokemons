@@ -7,7 +7,7 @@ public static class Reducers
     {
         return state with
         {
-            IsLoading = true,
+            //IsLoading = true,
         };
     }
 
@@ -17,7 +17,7 @@ public static class Reducers
         return state with
         {
             Pokemon = action.Pokemon,
-            IsLoading = false,
+            //IsLoading = false,
         };
     }
 }

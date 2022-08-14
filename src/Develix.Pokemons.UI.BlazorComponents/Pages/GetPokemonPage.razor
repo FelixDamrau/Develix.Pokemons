@@ -11,7 +11,7 @@
                 </MudItem>
                 <MudItem xs="12">
                     <MudButton Disabled="GetPokemonDisabled()" OnClick="GetPokemon">
-                        @if (PokedexState.Value.IsLoading)
+                        @if (PokedexState.Value.IsLoading())
                         {
                             <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
                             <MudText Class="ms-2">Loading</MudText>

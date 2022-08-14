@@ -27,5 +27,5 @@ public partial class GetPokemonPage
             GetPokemon();
     }
 
-    private bool GetPokemonDisabled() => PokedexState.Value.IsLoading;
+    private bool GetPokemonDisabled() => PokedexState.Value.IsLoading();
 }
