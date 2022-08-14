@@ -17,7 +17,7 @@ public partial class GetPokemonPage
 
     private void GetPokemon()
     {
-        var action = new GetPokemonAction(pokedexId);
+        var action = new GetPokedexEntryAction(pokedexId);
         Dispatcher.Dispatch(action);
     }
 

@@ -1,11 +1,11 @@
 ﻿@using PokeApiNet
 
-@if (Pokemon is not null)
+@if (Pokemon is not null && Species is not null)
 {
     <MudCard Class="pa-4 ma-2" Elevation="1" Style="width: 300px">
         <MudCardHeader>
             <CardHeaderAvatar>
-                <MudAvatar>@Pokemon.Name[0]</MudAvatar>
+                <MudAvatar>@Pokemon.Name.ToUpper()[0] </MudAvatar>
             </CardHeaderAvatar>
             <CardHeaderContent>
                 <MudText Typo="Typo.body1">@Pokemon.Name</MudText>
@@ -13,13 +13,12 @@
             </CardHeaderContent>
         </MudCardHeader>
         <MudCardContent>
-            <MudCarousel @ref="carousel" Style="height: 180px" AutoCycle="false" ShowArrows="false" ItemsSource="sprites" >
+            <MudCarousel @ref="carousel" Style="height: 180px" AutoCycle="false" ShowArrows="false" ItemsSource="sprites">
                 <ItemTemplate>
-                    <PokemonSpriteDisplay
-                        FrontName="@context.FrontName"
-                        FrontImage="@context.FrontImage"
-                        BackName="@context.BackName"
-                        BackImage="@context.BackImage" />
+                    <PokemonSpriteDisplay FrontName="@context.FrontName"
+                                      FrontImage="@context.FrontImage"
+                                      BackName="@context.BackName"
+                                      BackImage="@context.BackImage" />
                 </ItemTemplate>
             </MudCarousel>
         </MudCardContent>

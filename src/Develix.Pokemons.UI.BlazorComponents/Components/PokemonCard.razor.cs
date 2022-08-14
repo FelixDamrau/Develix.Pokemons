@@ -29,6 +29,10 @@ public partial class PokemonCard
         }
     }
 
+    [EditorRequired]
+    [Parameter]
+    public PokemonSpecies? Species { get; set; }
+
     private static string GetPokemonTypeNames(Pokemon pokemon)
     {
         var types = pokemon.Types.Select(t => t.Type.Name);
@@ -48,6 +52,23 @@ public partial class PokemonCard
             spriteInfos.Add(PokemonSpriteInfo.Create(() => sprites.FrontShinyFemale, () => sprites.BackShinyFemale));
 
         return spriteInfos;
+    }
+
+    private static string GetPokemonColor(PokemonSpecies species)
+    {
+        return species.Color.Name switch
+        {
+            "black" => Colors.Shades.Black,
+            "blue" => Colors.Blue.Darken4,
+            "gray" => Colors.Grey.Darken1,
+            "green" => Colors.Green.Default,
+            "pink" => Colors.Pink.Default,
+            "purple" => Colors.Purple.Default,
+            "red" => Colors.Red.Darken1,
+            "white" => Colors.Shades.White,
+            "yellow" => Colors.Yellow.Darken1,
+            _ => throw new NotSupportedException($"Color '{species.Color.Name}' is not supported yet!"),
+        };
     }
 
     private class PokemonSpriteInfo
