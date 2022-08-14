@@ -2,10 +2,10 @@
 
 @if (Pokemon is not null && Species is not null)
 {
-    <MudCard Class="pa-4 ma-2" Elevation="1" Style="width: 300px">
+    <MudCard Class="pa-4 ma-2" Elevation="1" Style=@($"width: 300px")>
         <MudCardHeader>
             <CardHeaderAvatar>
-                <MudAvatar>@Pokemon.Name.ToUpper()[0] </MudAvatar>
+                <MudAvatar Style=@($"background-color: {GetPokemonColor(Species)}")>@Pokemon.Name.ToUpper()[0] </MudAvatar>
             </CardHeaderAvatar>
             <CardHeaderContent>
                 <MudText Typo="Typo.body1">@Pokemon.Name</MudText>

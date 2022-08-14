@@ -65,8 +65,9 @@ public partial class PokemonCard
             "pink" => Colors.Pink.Default,
             "purple" => Colors.Purple.Default,
             "red" => Colors.Red.Darken1,
-            "white" => Colors.Shades.White,
+            "white" => Colors.BlueGrey.Lighten4,
             "yellow" => Colors.Yellow.Darken1,
+            "brown" => Colors.Brown.Darken1,
             _ => throw new NotSupportedException($"Color '{species.Color.Name}' is not supported yet!"),
         };
     }
