@@ -7,7 +7,7 @@ public static class Reducers
     {
         return state with
         {
-            //IsLoading = true,
+            LoadingState = state.LoadingState | PokedexStateLoadingFlags.PokemonLoading,
         };
     }
 
@@ -17,7 +17,25 @@ public static class Reducers
         return state with
         {
             Pokemon = action.Pokemon,
-            //IsLoading = false,
+            LoadingState = state.LoadingState & ~PokedexStateLoadingFlags.PokemonLoading,
+        };
+    }
+    [ReducerMethod(typeof(GetPokemonSpeciesAction))]
+    public static PokedexState ReduceGetPokemonSpeciesAction(PokedexState state)
+    {
+        return state with
+        {
+            LoadingState = state.LoadingState | PokedexStateLoadingFlags.PokemonSpeciesLoading,
+        };
+    }
+
+    [ReducerMethod]
+    public static PokedexState ReduceGetPokemonSpeciesResultAction(PokedexState state, GetPokemonSpeciesResultAction action)
+    {
+        return state with
+        {
+            Species = action.Species,
+            LoadingState = state.LoadingState & ~PokedexStateLoadingFlags.PokemonSpeciesLoading,
         };
     }
 }
