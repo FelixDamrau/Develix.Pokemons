@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using PokeApiNet
+
+<ErrorBoundary>
+    @if (FrontName is null || FrontImage is null)
+        throw new InvalidOperationException($"Required parameters are not provided!");
+
+    <MudStack Row="true">
+        <MudStack>
+            <MudImage ObjectFit="ObjectFit.ScaleDown" Width="100" Src="@FrontImage" Elevation="25" Class="rounded-lg" />
+            <MudText Style="font-size: 0.7em">@FrontName</MudText>
+        </MudStack>
+        @if (!string.IsNullOrWhiteSpace(BackImage))
+        {
+            <MudStack>
+                <MudImage ObjectFit="ObjectFit.ScaleDown" Width="100" Src="@BackImage" Elevation="25" Class="rounded-lg" />
+                <MudText Style="font-size: 0.7em">@(BackName ?? "Unknown")</MudText>
+            </MudStack>
+        }
+    </MudStack>
+</ErrorBoundary>
+
