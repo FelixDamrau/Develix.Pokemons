@@ -6,8 +6,8 @@ public record GetPokedexEntryAction(int PokedexId);
 
 public record GetPokemonAction(int PokedexId);
 
-public record GetPokemonResultAction(Pokemon Pokemon);
+public record GetPokemonResultAction(Pokemon? Pokemon);
 
 public record GetPokemonSpeciesAction(int PokedexId);
 
-public record GetPokemonSpeciesResultAction(PokemonSpecies Species);
+public record GetPokemonSpeciesResultAction(PokemonSpecies? Species);

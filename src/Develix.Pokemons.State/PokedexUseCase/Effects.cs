@@ -5,10 +5,12 @@ namespace Develix.Pokemons.State.PokedexUseCase;
 public class Effects
 {
     private readonly PokeApiClient pokeApiClient;
+    private readonly ISnackbarService snackbarService;
 
-    public Effects(PokeApiClient pokeApiClient)
+    public Effects(PokeApiClient pokeApiClient, ISnackbarService snackbarService)
     {
         this.pokeApiClient = pokeApiClient;
+        this.snackbarService = snackbarService;
     }
 
     [EffectMethod]
@@ -23,7 +25,7 @@ public class Effects
     [EffectMethod]
     public async Task HandleGetPokemonAction(GetPokemonAction action, IDispatcher dispatcher)
     {
-        var pokemon = await pokeApiClient.GetResourceAsync<Pokemon>(action.PokedexId);
+        var pokemon = await GetResourceAsync<Pokemon>(action.PokedexId);
         var resultAction = new GetPokemonResultAction(pokemon);
         dispatcher.Dispatch(resultAction);
     }
@@ -31,8 +33,22 @@ public class Effects
     [EffectMethod]
     public async Task HandleGetPokemonSpeciesAction(GetPokemonSpeciesAction action, IDispatcher dispatcher)
     {
-        var pokemon = await pokeApiClient.GetResourceAsync<PokemonSpecies>(action.PokedexId);
+        var pokemon = await GetResourceAsync<PokemonSpecies>(action.PokedexId);
         var resultAction = new GetPokemonSpeciesResultAction(pokemon);
         dispatcher.Dispatch(resultAction);
+    }
+
+    private async Task<T?> GetResourceAsync<T>(int id)
+    where T : ResourceBase
+    {
+        try
+        {
+            return await pokeApiClient.GetResourceAsync<T>(id);
+        }
+        catch (Exception e)
+        {
+            snackbarService.Add($"Loading resource of type {typeof(T).Name} failed.", e.Message);
+            return default;
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Develix.Pokemons.State.PokedexUseCase;
+﻿using Develix.Pokemons.State;
+using Develix.Pokemons.State.PokedexUseCase;
+using Develix.Pokemons.UI.BlazorComponents.Services;
 using Fluxor;
 using MudBlazor.Services;
 using PokeApiNet;
@@ -25,6 +27,7 @@ public static class MauiProgram
 #endif
 
         builder.Services.AddScoped<PokeApiClient>();
+        builder.Services.AddScoped<ISnackbarService, SnackbarService>();
 
         return builder.Build();
     }
